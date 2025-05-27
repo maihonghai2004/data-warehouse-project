@@ -23,22 +23,39 @@ Chúng tôi đã triển khai một giải pháp Data Warehouse toàn diện, t�
 Dự án được tổ chức như sau:
 data-warehouse-project/
 ├── Data/                 # Chứa bộ dữ liệu gốc (CSV, Excel, v.v.)
+
 ├── Design/               # Chứa các tài liệu thiết kế mô hình chiều (Kimball, High-Level, v.v.)
+
 │   ├── Nhom9_Detailed-Dimensional-Modeling-Workbook-KimballU.xlsm
+
 │   └── Nhom9_High-Level-Dimensional-Modeling-Workbook.xlsx
+
 ├── T-SQL/                # Chứa các script T-SQL để tạo cơ sở dữ liệu nguồn, staging, và Data Warehouse
+
 │   ├── Create_Original_DB.sql
+
 │   └── Hospital_DW.sql
+
 │   └── ExternalSources.bak
+
 │   └── Hospital.bak
+
 │   └── HospitalDW.bak
+
 │   └── HospitalStage.bak
+
 ├── HospitalDW_SSIS/      # Chứa các dự án và gói SSIS cho quy trình ETL
+
 ├── HospitalDW_SSAS/      # Chứa các dự án và mô hình SSAS (OLAP Cubes/Tabular Models)
+
 ├── BaoCao/               # Chứa tài liệu báo cáo cuối cùng của dự án
+
 │   └── Nhom9_BaoCaoKhoDuLieu.docx # Báo cáo đồ án chi tiết (Word)
+
 ├── PhanCongNhiemVu_Nhom9.docx # Tài liệu phân công nhiệm vụ của nhóm
+
 ├── PivotTable.xlsx       # File chứa PivotTable (nếu có để phân tích)
+
 └── README.md             # File bạn đang đọc này
 ## 🛠️ Công Nghệ & Công Cụ Sử Dụng
 
