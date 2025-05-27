@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LAPTOP-QTEB4KQ5.HospitalStage"
+  DTS:DTSID="{1B343DCF-368D-44FB-9F6C-B2CCA2FE93A3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LAPTOP-QTEB4KQ5;Initial Catalog=HospitalStage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-AdmissionProject_Nhom9-{1B343DCF-368D-44FB-9F6C-B2CCA2FE93A3}LAPTOP-QTEB4KQ5.HospitalStage;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,1489 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/19/2025 11:53:54 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-QTEB4KQ5"
+  DTS:CreatorName="LAPTOP-QTEB4KQ5\maiho"
+  DTS:DTSID="{B1DC1F6D-6BAF-400C-920D-D464983BA997}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StageFactTest"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{3F8556B5-A669-4C1D-A92E-35CAEF63D2EE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF - Stage FactAdmissionReport"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AD4C1071-1009-45EB-860E-B80676141F92}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Stage FactAdmissionReport"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Date Keys"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input].Columns[D#O#A]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#A"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input].Columns[D#O#D]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#D"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]"
+                      name="admission_date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([YEAR](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}) * 10000 + [MONTH](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}) * 100 + [DAY](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(YEAR(D#O#A) * 10000 + MONTH(D#O#A) * 100 + DAY(D#O#A))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]"
+                      name="discharge_date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([YEAR](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}) * 10000 + [MONTH](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}) * 100 + [DAY](#{Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(YEAR(D#O#D) * 10000 + MONTH(D#O#D) * 100 + DAY(D#O#D))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - StgAdmissionReport"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[StgAdmissionReport]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Connections[OleDbConnection]"
+                  connectionManagerID="{1B343DCF-368D-44FB-9F6C-B2CCA2FE93A3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-QTEB4KQ5.HospitalStage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[SNO]"
+                      cachedDataType="r8"
+                      cachedName="SNO"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[SNO]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[MRD No#]"
+                      cachedDataType="r8"
+                      cachedName="MRD No#"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[MRD No#]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[D#O#A]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#A"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#A]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[D#O#D]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#D"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#D]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TYPE OF ADMISSION-EMERGENCY/OPD"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[OUTCOME]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OUTCOME"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[OUTCOME]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[OUTCOME]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[ALCOHOL]"
+                      cachedDataType="r8"
+                      cachedName="ALCOHOL"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[ALCOHOL]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[ALCOHOL]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[SEVERE ANAEMIA]"
+                      cachedDataType="r8"
+                      cachedName="SEVERE ANAEMIA"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[SEVERE ANAEMIA]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[Smoking]"
+                      cachedDataType="r8"
+                      cachedName="Smoking"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[Smoking]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[Smoking]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[admission_date_key]"
+                      cachedDataType="i4"
+                      cachedName="admission_date_key"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[admission_date_key]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].Columns[discharge_date_key]"
+                      cachedDataType="i4"
+                      cachedName="discharge_date_key"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[discharge_date_key]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[SNO]"
+                      dataType="r8"
+                      name="SNO" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[MRD No#]"
+                      dataType="r8"
+                      name="MRD No#" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      name="D#O#A" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      name="D#O#D" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      dataType="wstr"
+                      length="255"
+                      name="TYPE OF ADMISSION-EMERGENCY/OPD" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[OUTCOME]"
+                      dataType="wstr"
+                      length="255"
+                      name="OUTCOME" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[ALCOHOL]"
+                      dataType="r8"
+                      name="ALCOHOL" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      name="SEVERE ANAEMIA" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[Smoking]"
+                      dataType="r8"
+                      name="Smoking" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[admission_date_key]"
+                      dataType="i4"
+                      name="admission_date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input].ExternalColumns[discharge_date_key]"
+                      dataType="i4"
+                      name="discharge_date_key" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Hospital"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RawAdmissionData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+  [SNO],
+  [MRD No#],
+  [SMOKING ] AS Smoking,
+  [ALCOHOL],
+  [SEVERE ANAEMIA],
+  [TYPE OF ADMISSION-EMERGENCY/OPD],
+  [OUTCOME],
+  [D#O#A],
+  [D#O#D]
+FROM RawAdmissionData</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Connections[OleDbConnection]"
+                  connectionManagerID="{679C50CE-5DBD-464D-B537-0F829E555D45}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-QTEB4KQ5.Hospital]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SNO]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]"
+                      name="SNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[MRD No#]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]"
+                      name="MRD No#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#A]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]"
+                      name="D#O#A"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#D]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]"
+                      name="D#O#D"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      length="255"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      name="TYPE OF ADMISSION-EMERGENCY/OPD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[OUTCOME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[OUTCOME]"
+                      length="255"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[OUTCOME]"
+                      name="OUTCOME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[ALCOHOL]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[ALCOHOL]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[ALCOHOL]"
+                      name="ALCOHOL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SEVERE ANAEMIA]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]"
+                      name="SEVERE ANAEMIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[Smoking]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[Smoking]"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[Smoking]"
+                      name="Smoking"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SNO]"
+                      dataType="r8"
+                      name="SNO" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[MRD No#]"
+                      dataType="r8"
+                      name="MRD No#" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      name="D#O#A" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      name="D#O#D" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      dataType="wstr"
+                      length="255"
+                      name="TYPE OF ADMISSION-EMERGENCY/OPD" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[OUTCOME]"
+                      dataType="wstr"
+                      length="255"
+                      name="OUTCOME" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[ALCOHOL]"
+                      dataType="r8"
+                      name="ALCOHOL" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      name="SEVERE ANAEMIA" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[Smoking]"
+                      dataType="r8"
+                      name="Smoking" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SNO]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SNO]"
+                      name="SNO" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[MRD No#]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[MRD No#]"
+                      name="MRD No#" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[Smoking]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[Smoking]"
+                      name="Smoking" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#A]"
+                      name="D#O#A" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#D]"
+                      name="D#O#D" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[TYPE OF ADMISSION-EMERGENCY/OPD]"
+                      name="TYPE OF ADMISSION-EMERGENCY/OPD" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[OUTCOME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[OUTCOME]"
+                      name="OUTCOME" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ALCOHOL]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ALCOHOL]"
+                      name="ALCOHOL" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SEVERE ANAEMIA]"
+                      name="SEVERE ANAEMIA" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Stage FactAdmissionReport.Paths[Derived Column Output]"
+              endId="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage FactAdmissionReport.Paths[OLE DB Source Output]"
+              endId="Package\DF - Stage FactAdmissionReport\Derived Date Keys.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage FactAdmissionReport\SRC - Hospital.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Stage FactDiagnosisReport"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{74AAE13C-6328-4FAB-AD61-277A325F6039}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Stage FactDiagnosisReport"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Date Keys"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input].Columns[D#O#A]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#A"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input].Columns[D#O#D]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#D"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]"
+                      name="admission_date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([YEAR](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}) * 10000 + [MONTH](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}) * 100 + [DAY](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(YEAR(D#O#A) * 10000 + MONTH(D#O#A) * 100 + DAY(D#O#A))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]"
+                      name="discharge_date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([YEAR](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}) * 10000 + [MONTH](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}) * 100 + [DAY](#{Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(YEAR(D#O#D) * 10000 + MONTH(D#O#D) * 100 + DAY(D#O#D))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - StgDiagnosisReport"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[StgDiagnosisReport]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Connections[OleDbConnection]"
+                  connectionManagerID="{1B343DCF-368D-44FB-9F6C-B2CCA2FE93A3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-QTEB4KQ5.HospitalStage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[SNO]"
+                      cachedDataType="r8"
+                      cachedName="SNO"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[SNO]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[MRD No#]"
+                      cachedDataType="r8"
+                      cachedName="MRD No#"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[MRD No#]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[D#O#A]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#A"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#A]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[D#O#D]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="D#O#D"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#D]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[SEVERE ANAEMIA]"
+                      cachedDataType="r8"
+                      cachedName="SEVERE ANAEMIA"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[SEVERE ANAEMIA]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[admission_date_key]"
+                      cachedDataType="i4"
+                      cachedName="admission_date_key"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[admission_date_key]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[admission_date_key]" />
+                    <inputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].Columns[discharge_date_key]"
+                      cachedDataType="i4"
+                      cachedName="discharge_date_key"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[discharge_date_key]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output].Columns[discharge_date_key]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[SNO]"
+                      dataType="r8"
+                      name="SNO" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[MRD No#]"
+                      dataType="r8"
+                      name="MRD No#" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      name="D#O#A" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      name="D#O#D" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      name="SEVERE ANAEMIA" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[admission_date_key]"
+                      dataType="i4"
+                      name="admission_date_key" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input].ExternalColumns[discharge_date_key]"
+                      dataType="i4"
+                      name="discharge_date_key" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Hospital"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RawAdmissionData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+  [SNO],
+  [MRD No#],
+  [D#O#A],
+  [D#O#D],
+  [SEVERE ANAEMIA]
+FROM RawAdmissionData</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Connections[OleDbConnection]"
+                  connectionManagerID="{679C50CE-5DBD-464D-B537-0F829E555D45}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-QTEB4KQ5.Hospital]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SNO]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SNO]"
+                      name="SNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[MRD No#]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[MRD No#]"
+                      name="MRD No#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#A]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#A]"
+                      name="D#O#A"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#D]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[D#O#D]"
+                      name="D#O#D"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SEVERE ANAEMIA]"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].Columns[SEVERE ANAEMIA]"
+                      name="SEVERE ANAEMIA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SNO]"
+                      dataType="r8"
+                      name="SNO" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[MRD No#]"
+                      dataType="r8"
+                      name="MRD No#" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      name="D#O#A" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      name="D#O#D" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output].ExternalColumns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      name="SEVERE ANAEMIA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SNO]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SNO]"
+                      name="SNO" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[MRD No#]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[MRD No#]"
+                      name="MRD No#" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#A]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#A]"
+                      name="D#O#A" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#D]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[D#O#D]"
+                      name="D#O#D" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SEVERE ANAEMIA]"
+                      dataType="r8"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[SEVERE ANAEMIA]"
+                      name="SEVERE ANAEMIA" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Stage FactDiagnosisReport.Paths[Derived Column Output]"
+              endId="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage FactDiagnosisReport.Paths[OLE DB Source Output]"
+              endId="Package\DF - Stage FactDiagnosisReport\Derived Date Keys.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage FactDiagnosisReport\SRC - Hospital.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4FF9E52F-2753-43D7-8006-86895D911A5D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1B343DCF-368D-44FB-9F6C-B2CCA2FE93A3}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.StgAdmissionReport;&#xA;TRUNCATE TABLE dbo.StgDiagnosisReport;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6DC8D34A-CB33-4681-8B42-0C7FEFF9FCFE}"
+      DTS:From="Package\SQL - Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF - Stage FactAdmissionReport" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6024D2E6-5509-4881-B11E-6E8BC8590F84}"
+      DTS:From="Package\SQL - Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DF - Stage FactDiagnosisReport" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="230.4,41.6"
+          Id="Package\DF - Stage FactAdmissionReport"
+          TopLeft="106.42857165513,217.941176279554" />
+        <NodeLayout
+          Size="227.2,41.6"
+          Id="Package\DF - Stage FactDiagnosisReport"
+          TopLeft="487.857143895663,217.176470397872" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\SQL - Truncate Table"
+          TopLeft="311.428572091521,64.999999943025" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="400.628572091521,106.599999943025">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-179.000000436391,111.341176336529"
+              Start="0,0"
+              End="-179.000000436391,103.841176336529">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6705881682647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.6705881682647"
+                    Point2="0,55.6705881682647"
+                    Point3="-4,55.6705881682647" />
+                  <mssgle:LineSegment
+                    End="-175.000000436391,55.6705881682647" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-175.000000436391,55.6705881682647"
+                    Point2="-179.000000436391,55.6705881682647"
+                    Point3="-179.000000436391,59.6705881682647" />
+                  <mssgle:LineSegment
+                    End="-179.000000436391,103.841176336529" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="429.028572091521,106.599999943025">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.428571804142,110.576470454847"
+              Start="0,0"
+              End="172.428571804142,103.076470454847">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.8203293576979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.8203293576979"
+                    Point2="0,44.8203293576979"
+                    Point3="4,44.8203293576979" />
+                  <mssgle:LineSegment
+                    End="168.428571804142,44.8203293576979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.428571804142,44.8203293576979"
+                    Point2="172.428571804142,44.8203293576979"
+                    Point3="172.428571804142,48.8203293576979" />
+                  <mssgle:LineSegment
+                    End="172.428571804142,103.076470454847" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF - Stage FactAdmissionReport">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\DF - Stage FactAdmissionReport\SRC - Hospital"
+          TopLeft="157.142857477373,62.705882297977" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\DF - Stage FactAdmissionReport\Derived Date Keys"
+          TopLeft="344.285715018608,165.941176325134" />
+        <NodeLayout
+          Size="202.4,41.6"
+          Id="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport"
+          TopLeft="514.285715380494,253.882352718639" />
+        <EdgeLayout
+          Id="Package\DF - Stage FactAdmissionReport.Paths[OLE DB Source Output]"
+          TopLeft="229.942857477373,104.305882297977">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="196.742857541235,61.6352940271574"
+              Start="0,0"
+              End="196.742857541235,54.1352940271574">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8176470135787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8176470135787"
+                    Point2="0,30.8176470135787"
+                    Point3="4,30.8176470135787" />
+                  <mssgle:LineSegment
+                    End="192.742857541235,30.8176470135787" />
+                  <mssgle:CubicBezierSegment
+                    Point1="192.742857541235,30.8176470135787"
+                    Point2="196.742857541235,30.8176470135787"
+                    Point3="196.742857541235,34.8176470135787" />
+                  <mssgle:LineSegment
+                    End="196.742857541235,54.1352940271574" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage FactAdmissionReport.Paths[Derived Column Output]"
+          TopLeft="426.685715018608,207.541176325134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.800000361885,46.3411763935044"
+              Start="0,0"
+              End="188.800000361885,38.8411763935044">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.1705881967522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.1705881967522"
+                    Point2="0,23.1705881967522"
+                    Point3="4,23.1705881967522" />
+                  <mssgle:LineSegment
+                    End="184.800000361885,23.1705881967522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184.800000361885,23.1705881967522"
+                    Point2="188.800000361885,23.1705881967522"
+                    Point3="188.800000361885,27.1705881967522" />
+                  <mssgle:LineSegment
+                    End="188.800000361885,38.8411763935044" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage FactAdmissionReport\SRC - Hospital">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Stage FactDiagnosisReport">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\DF - Stage FactDiagnosisReport\SRC - Hospital"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\DF - Stage FactDiagnosisReport\Derived Date Keys"
+          TopLeft="293.636359260841,153.636361347003" />
+        <EdgeLayout
+          Id="Package\DF - Stage FactDiagnosisReport.Paths[OLE DB Source Output]"
+          TopLeft="132.8,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="243.236359260841,52.0363613470034"
+              Start="0,0"
+              End="243.236359260841,44.5363613470034">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0181806735017" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0181806735017"
+                    Point2="0,26.0181806735017"
+                    Point3="4,26.0181806735017" />
+                  <mssgle:LineSegment
+                    End="239.236359260841,26.0181806735017" />
+                  <mssgle:CubicBezierSegment
+                    Point1="239.236359260841,26.0181806735017"
+                    Point2="243.236359260841,26.0181806735017"
+                    Point3="243.236359260841,30.0181806735017" />
+                  <mssgle:LineSegment
+                    End="243.236359260841,44.5363613470034" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport"
+          TopLeft="508.181810609319,232.727269259366" />
+        <EdgeLayout
+          Id="Package\DF - Stage FactDiagnosisReport.Paths[Derived Column Output]"
+          TopLeft="376.036359260841,195.236361347003">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="232.145451348478,37.4909079123628"
+              Start="0,0"
+              End="232.145451348478,29.9909079123628">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7454539561814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7454539561814"
+                    Point2="0,18.7454539561814"
+                    Point3="4,18.7454539561814" />
+                  <mssgle:LineSegment
+                    End="228.145451348478,18.7454539561814" />
+                  <mssgle:CubicBezierSegment
+                    Point1="228.145451348478,18.7454539561814"
+                    Point2="232.145451348478,18.7454539561814"
+                    Point3="232.145451348478,22.7454539561814" />
+                  <mssgle:LineSegment
+                    End="232.145451348478,29.9909079123628" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage FactAdmissionReport\DST - StgAdmissionReport">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage FactDiagnosisReport\SRC - Hospital">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage FactDiagnosisReport\DST - StgDiagnosisReport">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

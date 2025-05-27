@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LAPTOP-QTEB4KQ5.ExternalSources2"
+  DTS:DTSID="{DBBAA4CD-8E38-4842-8F4A-028AE22A7B25}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LAPTOP-QTEB4KQ5;Initial Catalog=ExternalSources2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-AdmissionProject_Nhom9-{DBBAA4CD-8E38-4842-8F4A-028AE22A7B25}LAPTOP-QTEB4KQ5.ExternalSources2;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
